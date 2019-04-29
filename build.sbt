@@ -4,5 +4,6 @@ ThisBuild / version := "0.1.0-SNAPSHOT"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "atcoder"
+    name := "atcoder",
+    scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
   )
