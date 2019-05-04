@@ -12,27 +12,36 @@ object agc033_a extends App {
   // 塗りつぶすまでの回数を数える
   var times = 0
   while (!isFilled(board)) {
-    val target = for {
+    var target: Seq[(Int, Int)] = Seq()
+    for {
       i <- board.indices
       j <- board(0).indices
-    } yield judge(board, i, j)
-    board = update(board, target)
+    } judge(board, i, j) match {
+      case Some(x) =>
+        target = target ++ x
+      case None =>
+    }
+
+    board = update(board, target, h, w)
     times = times + 1
   }
   println(times.toString)
 
   def isFilled(board: Array[Array[String]]): Boolean = !board.flatten.contains(".")
 
-  def judge(array: Array[Array[String]], i: Int, j: Int): Option[(Int, Int)] = {
-    for ((vertical, side) <- Seq((i - 1, j), (i, j + 1), (i + 1, j), (i, j - 1)))
-      if (board(i)(j) != "#" && board.isDefinedAt(vertical) && board(vertical).isDefinedAt(side) && board(vertical)(side) == "#") {
-        return Some((i, j))
-      }
-    None
-  }
+  def judge(array: Array[Array[String]], i: Int, j: Int): Option[Seq[(Int, Int)]] =
+    if (board(i)(j) == "#") {
+      Some(Seq((i - 1, j), (i, j + 1), (i + 1, j), (i, j - 1)))
+    } else {
+      None
+    }
 
-  def update(array: Array[Array[String]], target: Seq[Option[(Int, Int)]]): Array[Array[String]] = {
-    target.flatten.foreach { case (i, j) => board(i)(j) = "#" }
+  def update(array: Array[Array[String]], target: Seq[(Int, Int)], h: Int, w: Int): Array[Array[String]] = {
+    target.foreach {
+      case (i, j) =>
+        if (i >= 0 && i < h && j >= 0 && j < w)
+          board(i)(j) = "#"
+    }
     board
   }
 }
