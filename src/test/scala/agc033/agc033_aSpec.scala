@@ -5,6 +5,8 @@ import org.scalatest.FeatureSpec
 class agc033_aSpec extends FeatureSpec {
   feature("https://atcoder.jp/contests/agc033/tasks/agc033_a") {
     scenario("入力例 1") {
+      val start = System.currentTimeMillis
+
       val input =
         """3 3
           |...
@@ -22,9 +24,13 @@ class agc033_aSpec extends FeatureSpec {
         }
       }
       assert(outCapture.toString === output)
+
+      println(s"${System.currentTimeMillis - start} msec")
     }
 
     scenario("入力例 2") {
+      val start = System.currentTimeMillis
+
       val input =
         """6 6
           |..#..#
@@ -45,9 +51,13 @@ class agc033_aSpec extends FeatureSpec {
         }
       }
       assert(outCapture.toString === output)
+
+      println(s"${System.currentTimeMillis - start} msec")
     }
 
     scenario("大きい表") {
+      val start = System.currentTimeMillis
+
       val input =
         """100 100
           |#...................................................................................................
@@ -162,6 +172,8 @@ class agc033_aSpec extends FeatureSpec {
         }
       }
       assert(outCapture.toString === output)
+
+      println(s"${System.currentTimeMillis - start} msec")
     }
   }
 }
