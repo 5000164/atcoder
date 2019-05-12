@@ -8,8 +8,10 @@ object diverta2019_b extends App {
   for {
     i <- 0 to n / r
     j <- 0 to n / g
-    k <- 0 to n / b
-  } if (((r * i) + (g * j) + (k * b)) == n) count = count + 1
+  } {
+    val remain = n - (r * i) - (g * j)
+    if (remain >= 0 && remain % b == 0) count = count + 1
+  }
 
   println(count)
 }
