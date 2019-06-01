@@ -28,7 +28,7 @@ object practice_2 extends App {
           if (smaller > 0 && bigger > 0) {
             val average  = (smaller + bigger) / 2.0
             val variance = (Math.pow(smaller - average, 2) + Math.pow(bigger - average, 2)) / 2.0
-            Some(c, average, variance)
+            Some((c, average, variance))
           } else {
             None
           }
