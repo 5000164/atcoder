@@ -8,6 +8,7 @@
       <option name="featureWarnings" value="true" />
       <parameters>
         <parameter value="-Xlint" />
+        <parameter value="-target:jvm-1.8" />
       </parameters>
     </profile>
   </component>
