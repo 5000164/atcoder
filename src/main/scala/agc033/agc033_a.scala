@@ -3,13 +3,9 @@ package agc033
 import scala.collection.mutable
 
 object agc033_a extends App {
-  val (h, w) = scala.io.StdIn.readLine.split(' ').map(_.toInt) match { case Array(x, y) => (x, y) }
-
-  // 与えられた表を作成する
-  var board = Array.ofDim[String](h, w)
-  for (row <- 0 until h) {
-    scala.io.StdIn.readLine.zipWithIndex.foreach { case (value, index) => board(row)(index) = value.toString }
-  }
+  val in   = new java.util.Scanner(System.in)
+  val h, w = in.nextInt
+  val t    = List.fill(h)(in.next)
 
   // 幅優先探索を行う
 
@@ -17,7 +13,7 @@ object agc033_a extends App {
   val visited = mutable.Set[(Int, Int)]()
 
   // 最初に与えられている黒マスをキューに追加する
-  board.zipWithIndex.foreach(row => row._1.zipWithIndex.filter(_._1 == "#").foreach(v => queue += ((row._2, v._2))))
+  t.zipWithIndex.foreach(r => r._1.zipWithIndex.filter(_._1 == '#').foreach(v => queue += ((r._2, v._2))))
 
   // 黒マスは訪問済みの印を付ける
   queue.foreach(v => visited += ((v._1, v._2)))

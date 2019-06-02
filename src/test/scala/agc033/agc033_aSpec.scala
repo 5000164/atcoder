@@ -1,6 +1,10 @@
 package agc033
 
+import java.io.ByteArrayInputStream
+
 import org.scalatest.FeatureSpec
+
+import scala.io.Source
 
 class agc033_aSpec extends FeatureSpec {
   feature("https://atcoder.jp/contests/agc033/tasks/agc033_a") {
@@ -14,12 +18,10 @@ class agc033_aSpec extends FeatureSpec {
       val output =
         """2
           |""".stripMargin
-      val reader     = new java.io.StringReader(input)
+      System.setIn(new ByteArrayInputStream(input.getBytes))
       val outCapture = new java.io.ByteArrayOutputStream
-      Console.withIn(reader) {
-        Console.withOut(outCapture) {
-          agc033_a.main(Array())
-        }
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
       }
       assert(outCapture.toString === output)
     }
@@ -37,12 +39,10 @@ class agc033_aSpec extends FeatureSpec {
       val output =
         """3
           |""".stripMargin
-      val reader     = new java.io.StringReader(input)
+      System.setIn(new ByteArrayInputStream(input.getBytes))
       val outCapture = new java.io.ByteArrayOutputStream
-      Console.withIn(reader) {
-        Console.withOut(outCapture) {
-          agc033_a.main(Array())
-        }
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
       }
       assert(outCapture.toString === output)
     }
@@ -154,12 +154,10 @@ class agc033_aSpec extends FeatureSpec {
       val output =
         """198
           |""".stripMargin
-      val reader     = new java.io.StringReader(input)
+      System.setIn(new ByteArrayInputStream(input.getBytes))
       val outCapture = new java.io.ByteArrayOutputStream
-      Console.withIn(reader) {
-        Console.withOut(outCapture) {
-          agc033_a.main(Array())
-        }
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
       }
       assert(outCapture.toString === output)
     }
