@@ -161,5 +161,23 @@ class agc033_aSpec extends FeatureSpec {
       }
       assert(outCapture.toString === output)
     }
+
+    scenario("最大の大きい表") {
+      val source = Source.fromFile(s"${new java.io.File(".").getCanonicalPath}/src/test/resources/agc033/table.txt")
+      val input =
+        s"""1000 1000
+           |${source.getLines.mkString("\n")}
+           |""".stripMargin
+      source.close
+      val output =
+        """1998
+          |""".stripMargin
+      System.setIn(new ByteArrayInputStream(input.getBytes))
+      val outCapture = new java.io.ByteArrayOutputStream
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
+      }
+      assert(outCapture.toString === output)
+    }
   }
 }
