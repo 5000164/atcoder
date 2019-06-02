@@ -163,8 +163,5 @@ class agc033_aSpec extends FeatureSpec {
       }
       assert(outCapture.toString === output)
     }
-
-      println(s"${System.currentTimeMillis - start} msec")
-    }
   }
 }
