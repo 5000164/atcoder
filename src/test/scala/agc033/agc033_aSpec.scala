@@ -1,6 +1,10 @@
 package agc033
 
+import java.io.ByteArrayInputStream
+
 import org.scalatest.FeatureSpec
+
+import scala.io.Source
 
 class agc033_aSpec extends FeatureSpec {
   feature("https://atcoder.jp/contests/agc033/tasks/agc033_a") {
@@ -14,12 +18,10 @@ class agc033_aSpec extends FeatureSpec {
       val output =
         """2
           |""".stripMargin
-      val reader     = new java.io.StringReader(input)
+      System.setIn(new ByteArrayInputStream(input.getBytes))
       val outCapture = new java.io.ByteArrayOutputStream
-      Console.withIn(reader) {
-        Console.withOut(outCapture) {
-          agc033_a.main(Array())
-        }
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
       }
       assert(outCapture.toString === output)
     }
@@ -37,12 +39,10 @@ class agc033_aSpec extends FeatureSpec {
       val output =
         """3
           |""".stripMargin
-      val reader     = new java.io.StringReader(input)
+      System.setIn(new ByteArrayInputStream(input.getBytes))
       val outCapture = new java.io.ByteArrayOutputStream
-      Console.withIn(reader) {
-        Console.withOut(outCapture) {
-          agc033_a.main(Array())
-        }
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
       }
       assert(outCapture.toString === output)
     }
@@ -154,17 +154,30 @@ class agc033_aSpec extends FeatureSpec {
       val output =
         """198
           |""".stripMargin
-      val reader     = new java.io.StringReader(input)
+      System.setIn(new ByteArrayInputStream(input.getBytes))
       val outCapture = new java.io.ByteArrayOutputStream
-      Console.withIn(reader) {
-        Console.withOut(outCapture) {
-          agc033_a.main(Array())
-        }
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
       }
       assert(outCapture.toString === output)
     }
 
-      println(s"${System.currentTimeMillis - start} msec")
+    scenario("最大の大きい表") {
+      val source = Source.fromFile(s"${new java.io.File(".").getCanonicalPath}/src/test/resources/agc033/table.txt")
+      val input =
+        s"""1000 1000
+           |${source.getLines.mkString("\n")}
+           |""".stripMargin
+      source.close
+      val output =
+        """1998
+          |""".stripMargin
+      System.setIn(new ByteArrayInputStream(input.getBytes))
+      val outCapture = new java.io.ByteArrayOutputStream
+      Console.withOut(outCapture) {
+        agc033_a.main(Array())
+      }
+      assert(outCapture.toString === output)
     }
   }
 }
