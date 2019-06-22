@@ -4,15 +4,22 @@ object abc131_c extends App {
   val in         = new java.util.Scanner(System.in)
   val a, b, c, d = in.nextLong
 
-  def count(now: Long, limit: Long, dividers: Seq[Long], counter: Long): Long =
-    if (now > limit)
-      counter
-    else if (dividers.forall(now % _ != 0))
-      count(now + 1, limit, dividers, counter + 1)
+  def calcGcd(a: Long, b: Long): Long = {
+    val r = a % b
+    if (r == 0)
+      b
     else
-      count(now + 1, limit, dividers, counter)
+      calcGcd(b, r)
+  }
 
-  val answer = count(a, b, Seq(c, d), 0)
+  val possibility = b - a + 1
+  val minusByC    = (b / c) - ((a - 1) / c)
+  val minusByD    = (b / d) - ((a - 1) / d)
+  val gcd         = if (c >= d) calcGcd(c, d) else calcGcd(d, c)
+  val lcm         = c * d / gcd
+  val duplicate   = (b / lcm) - ((a - 1) / lcm)
+
+  val answer = possibility - (minusByC + minusByD - duplicate)
 
   println(answer)
 }
